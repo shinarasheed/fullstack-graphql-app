@@ -27,6 +27,9 @@ module.exports = {
     },
   },
 
+  //the resolver functions usually takes 4 arguements
+  //we can use underscore/underscores for the ones we do not need
+
   Mutation: {
     async createPost(_, { body }, context) {
       const user = checkAuth(context);
@@ -39,6 +42,8 @@ module.exports = {
       });
 
       const post = await newPost.save();
+
+      context.pubsub.publish('NEW_POST', { newPost: post });
 
       return post;
     },
@@ -59,6 +64,14 @@ module.exports = {
       } catch (error) {
         throw new Error(error.message);
       }
+    },
+  },
+
+  //subscriptions allows us to listen to actions or events
+  //we can listen to post creation, deletion etc
+  Subscription: {
+    newPost: {
+      subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_POST'),
     },
   },
 };
