@@ -4,7 +4,8 @@
   "description": "a graphql server",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server"
+    "start": "nodemon server",
+    "serve": "node server"
   },
   "author": "shina",
   "license": "MIT",
