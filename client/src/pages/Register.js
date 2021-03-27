@@ -27,8 +27,6 @@ const Register = ({ history }) => {
     variables: values,
   });
 
-  // i want to put a set time out to it
-
   //variables with the function keyword an actually hoisted
   //they are brought to the top. that is why the function is available up there
   //this is unlike functions with the const keyword
@@ -36,6 +34,7 @@ const Register = ({ history }) => {
     addUser();
   }
 
+  // i want to put a set time out to it
   const showErrors = () => {
     if (Object.keys(errors).length > 0) {
       return (
